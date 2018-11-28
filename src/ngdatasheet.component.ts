@@ -160,13 +160,13 @@ export interface Cell {
 })
 export class NgDatasheetComponent implements OnInit, OnDestroy {
 
-  private _w: number[];
-  @Input() public width: number;
+  private _w!: number[];
+  @Input() public width!: number;
 
-  private _h: number[];
-  @Input() public height: number;
+  private _h!: number[];
+  @Input() public height!: number;
 
-  public _data: any[][];
+  public _data!: any[][];
   @Input() set data(data: (string | number | Cell)[][]) {
     this._data = data;
 
@@ -200,16 +200,16 @@ export class NgDatasheetComponent implements OnInit, OnDestroy {
   }
 
   private _isSelecting: boolean = false; // Flag if user is actively selecting cells (mouse down, hovering on cells)            
-  private _start: [number, number];         // Holder for cell that user started selection over
+  private _start!: [number, number];         // Holder for cell that user started selection over
   private _isEditing: boolean = false;   // Flag for if user is actively editing a cell (consider deprecating, refactor to use _editCell)
-  private _editCell: [number, number];      // Holder for cell that user is editing
+  private _editCell!: [number, number];      // Holder for cell that user is editing
   public selected: CoordinateMap = new CoordinateMap();
 
   /* Listeners */
-  private moveListener: () => void;
-  private editListener: () => void;
-  private clickListener: () => void;
-  private dataListener: Subscription;
+  private moveListener!: () => void;
+  private editListener!: () => void;
+  private clickListener!: () => void;
+  private dataListener!: Subscription;
 
   constructor(private renderer: Renderer2) { }
 
@@ -379,7 +379,7 @@ export class NgDatasheetComponent implements OnInit, OnDestroy {
 
     // Empty out variables and emit new data
     this._isEditing = false;
-    this._editCell = null;
+    delete this._editCell;
     this.dataChange.emit(this._data);
   }
 
@@ -532,10 +532,10 @@ th {
   `]
 })
 export class HeaderCellComponent implements OnInit {
-  @Input() top: boolean;
-  @Input() side: boolean;
-  @Input() index: number;
-  public letters: string;
+  @Input() top!: boolean;
+  @Input() side!: boolean;
+  @Input() index!: number;
+  public letters!: string;
 
   ngOnInit() {
     if (this.top) {
